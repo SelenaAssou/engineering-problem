@@ -3,6 +3,7 @@ package app;
 import java.util.*;
 import java.io.*;
 
+
 public final class Main {
 
   private Main() {}
@@ -58,7 +59,7 @@ public final class Main {
     //Open the csv file.
     Scanner in = new Scanner(new File("accountants_invoices.csv"));
     
-    //Skip the first line
+    //Skip the first line (header)
     in.nextLine(); 
 
     //Use ArrayList since List is abstract.
