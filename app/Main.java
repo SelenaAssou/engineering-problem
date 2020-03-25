@@ -1,3 +1,5 @@
+//Modified by Soukaina Assou
+
 package app;
 
 import java.util.*;
@@ -14,9 +16,43 @@ public final class Main {
     List<Invoice> accountantsInvoices = getAccountantsInvoiceList();
     
     // Reconcile the invoices between lists. 
-
-
     // Use System.out.println() to print out the results.
+
+    int flag = 0;
+    
+    //Using 2 for loops to get the Invoice objects to be evaluated.
+    //Assuming we are comparing the Accountants list to OURs...
+    for(int i = 0; i < invoices.size() ; i++){
+      //Must reset the flag to its original value: 0 for the next Invoice comparison.
+      flag = 0;
+      for(int j = 0; j < myInvoices.size() ; j++){
+        //If the Invoice Numbers are equal
+        if(invoices.get(i).getInvoiceNumber().equals(myInvoices.get(j).getInvoiceNumber()))
+        {   //Check if the Amount is also equal ...
+          if(invoices.get(i).getInvoiceAmount() == (myInvoices.get(j).getInvoiceAmount())){
+            flag = 1 ;
+            break;
+          }else{
+            //Point out the difference in either invoice numbers since the numbers are equal ...
+            System.out.println("There is a difference in amounts for invoice: " + 
+              invoices.get(i).getInvoiceNumber());
+            flag =  1;
+            break;
+          }
+        }
+
+      }//end of inner loop.
+
+      //we reached the end of the loop, meaning we cou'dn't find any invoice numbers that match.
+      if(flag == 0){
+        System.out.println("Invoice number: " + invoices.get(i).getInvoiceNumber() + " does not exist");
+      }
+    }//End of outer loop.
+
+    //TODO: now flip the loops and only evaluate when OUR wntire entry (a Invoice Object from the List) does not exist in the accountants list ...
+    //       since I already evaluated where they are similar and half similar.
+
+    // .... //
   }
 
 
