@@ -1,11 +1,9 @@
 package app;
 
 import java.util.*;
+import java.io.*;
 
-
-
-
-public final class Main{
+public final class Main {
 
   private Main() {}
 
@@ -22,7 +20,7 @@ public final class Main{
 
 
 
-  private static List<Invoice> getMyInvoiceList() {
+  public List<Invoice> getMyInvoiceList() {
     // Usually the data will be stored in the database,
     // however we are just returning a static list to simplify the problem.
     return Arrays.asList(
@@ -51,12 +49,32 @@ public final class Main{
     );
   }
   
-  private static List<Invoice> getAccountantsInvoiceList() {
+  public List<Invoice> getAccountantsInvoiceList() {
     List<Invoice> invoices;
 
     // TODO: Read invoices from accountants_invoices.csv.
     // The file has a header row and a row for each invoice.
 
+    //Open the csv file.
+    Scanner in = new Scanner(new File("accountants_invoices.csv"));
+    
+    //Skip the first line
+    in.nextLine(); 
+
+    //Use ArrayList since List is abstract.
+    invoices = new ArrayList<Invoice>();
+
+    while(in.hasNext())
+    {
+      //Line contains String and Int.
+      String line = in.nextLine();
+      //Split into a string array.
+      String[] invoice = line.split(", ");
+
+      //Add both parts (Number and Amount) of the invoice to the List.
+      invoices.add(new Invoice(invoice[0], Integer.parseInt(invoice[1])));
+    
+    }
 
     return invoices;
   }
