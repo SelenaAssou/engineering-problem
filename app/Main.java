@@ -49,11 +49,29 @@ public final class Main {
       }
     }//End of outer loop.
 
-    //TODO: now flip the loops and only evaluate when OUR wntire entry (a Invoice Object from the List) does not exist in the accountants list ...
-    //       since I already evaluated where they are similar and half similar.
 
-    // .... //
-  }
+    //Now: Evaluate my list of invoices...
+    //reset original value for flag.
+    flag = 0;
+
+    //2 for loops again now outer loop: myInvoices.
+    for(int i = 0; i < myInvoices.size() ; i++){
+      //Must reset the flag to its original value: 0 for the next Invoice evaluaiton.
+      flag = 0;
+      for(int j = 0; j < invoices.size() ; j++){
+        if(invoices.get(j).getInvoiceNumber().equals(myInvoices.get(i).getInvoiceNumber())){
+          flag = 1;
+          break;
+        }
+
+      }
+      //We haven't find a match, therefore Invoice entry doesn't exist ...
+      if(flag == 0){
+        System.out.println("Invoice number: " + myInvoices.get(i).getInvoiceNumber() + " does not exist in my invoices.");
+      }
+    }
+
+  }//end of main.
 
 
 
