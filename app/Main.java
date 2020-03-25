@@ -9,6 +9,7 @@ public final class Main {
   private Main() {}
 
   public static void main(String[] args) throws Exception {
+
     List<Invoice> myInvoices = getMyInvoiceList();
     List<Invoice> accountantsInvoices = getAccountantsInvoiceList();
     
@@ -21,7 +22,7 @@ public final class Main {
 
 
 
-  public List<Invoice> getMyInvoiceList() {
+  private static List<Invoice> getMyInvoiceList() {
     // Usually the data will be stored in the database,
     // however we are just returning a static list to simplify the problem.
     return Arrays.asList(
@@ -50,7 +51,7 @@ public final class Main {
     );
   }
   
-  public List<Invoice> getAccountantsInvoiceList() {
+  private static List<Invoice> getAccountantsInvoiceList() {
     List<Invoice> invoices;
 
     // TODO: Read invoices from accountants_invoices.csv.
